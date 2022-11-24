@@ -18,7 +18,7 @@ driver = webdriver.Chrome('./chromedriver', options=options)
 df_title = pd.DataFrame()
 for i in range(0, 6):     # Section / 사회문화 (2, 4)
     titles = []
-    for j in range(1, 11):     # page/  페이지는 1부터 시작, 마지막 페이지에는 뉴스 20개가 없을 수도 있어서 그 전 페이지까지 봐야함
+    for j in range(1, pages[i]):     # page/  페이지는 1부터 시작, 마지막 페이지에는 뉴스 20개가 없을 수도 있어서 그 전 페이지까지 봐야함
         url = 'https://news.naver.com/main/main.naver?mode=LSD&mid=shm&sid1=10{}#&date=%2000:00:00&page={}'.format(i, j)
         driver.get(url)
         time.sleep(0.2)
@@ -30,12 +30,15 @@ for i in range(0, 6):     # Section / 사회문화 (2, 4)
                     title = re.compile('[^가-힣 ]').sub(' ', title)
                     titles.append(title)
                 except NoSuchElementException as e:
-                    x_path = '//*[@id="section_body"]/ul[{}]/li[{}]/dl/dt/a'.format(k, l)  # 이미지가 없는 기사라 오류가 나서 다시 처리함
-                    title = driver.find_element('xpath', x_path).text
-                    title = re.compile('[^가-힣 ]').sub(' ', title)
-                    titles.append(title)
+                    try:
+                        x_path = '//*[@id="section_body"]/ul[{}]/li[{}]/dl/dt/a'.format(k, l)  # 이미지가 없는 기사라 오류가 나서 다시 처리함
+                        title = driver.find_element('xpath', x_path).text
+                        title = re.compile('[^가-힣 ]').sub(' ', title)
+                        titles.append(title)
+                    except:
+                        print('error', i, j, k, l)
                 except:
-                    print('error')
+                    print('error', i, j, k, l)
 
         if j % 10 == 0:  # 10 페이지마다 저장됨
             df_section_title = pd.DataFrame(titles, columns=['titles'])

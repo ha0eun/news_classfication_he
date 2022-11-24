@@ -30,7 +30,7 @@ for i in range(6):
         title = re.compile('[^가-힣]').sub(' ', title)  #('[^가-힣]') == 가-힣 한글 전체만 빼고 다 지워라/ ^ == 반전/  sub(' ', title) sub은 다 지워라
         print(title)                            # ('[^가-힣0-9a-zA-Z]') 한글, 숫자, 대소문자만 남기고 다빼라
         titles.append(title)  # 크롤링한 뉴스 제목이 들어감 titles에
-    df_section_titles = pd.DataFrame(titles, columns=['titles'])
+    df_section_titles = pd.DataFrame(titles, columns=['title'])
     df_section_titles['category'] = category[i]   # 카테코리
     df_titles = pd.concat([df_titles, df_section_titles], axis='rows', ignore_index=True) # 빈데이터 프레임에 합침. row = 자료를 합침
                                     # df_titles 여기에는 정치 카테고리 데이터가 들어가있음
