@@ -1,3 +1,5 @@
+# pip freeze > requirments.txt  환경 그대로 받기
+
 async-generator==1.10
 attrs==22.1.0
 beautifulsoup4==4.11.1
