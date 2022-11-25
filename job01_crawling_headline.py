@@ -4,7 +4,7 @@ import re
 import pandas as pd    # pip install pandas
 import datetime
 import matplotlib.pyplot as plt   # pip install matplotlib
-
+import numpy as np
 
 category =['Politics', 'Economic', 'Social', 'Culture', 'World', 'IT']
 
@@ -36,7 +36,6 @@ for i in range(6):
                                     # df_titles 여기에는 정치 카테고리 데이터가 들어가있음
     print(df_titles)
     print(df_titles.category.value_counts())  # 섹션 마다 다름
-    df_titles.to_csv('./crawling_data/naver_headline_news_{}.csv'.format(
     df_titles.to_csv('./crawling_data/naver_headline_news_{}.csv'.format(
         datetime.datetime.now().strftime('%Y%m%d')), index=False)
 
