@@ -37,5 +37,6 @@ for i in range(6):
     print(df_titles)
     print(df_titles.category.value_counts())  # 섹션 마다 다름
     df_titles.to_csv('./crawling_data/naver_headline_news_{}.csv'.format(
+    df_titles.to_csv('./crawling_data/naver_headline_news_{}.csv'.format(
         datetime.datetime.now().strftime('%Y%m%d')), index=False)
 
