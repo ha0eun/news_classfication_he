@@ -10,6 +10,7 @@ import pickle
 
 pd.set_option('display.unicode.east_asian_width', True)
 df = pd.read_csv('./crawling_data/naver_news_titles_20221124.csv')
+df.category.replace('social', 'Social', inplace=True)
 print(df.head())
 print(df.category.value_counts())
 df.info()
