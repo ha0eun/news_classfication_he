@@ -9,7 +9,9 @@ from keras.utils import to_categorical
 import pickle
 from keras.models import load_model
 
-df = pd.read_csv('./crawling_data/naver_headline_news_20221125.csv')
+pd.set_option('display.unicode.east_asian_width', True)
+pd.set_option('display.max_columns', 15)
+df = pd.read_csv('./crawling_data/naver_headline_news_20221128.csv')
 print(df.head())
 df.info()
 
@@ -38,9 +40,9 @@ with open('./models/news_token.pickle', 'rb') as f:
     token = pickle.load(f)
 tokened_X = token.texts_to_sequences(X)
 for i in range(len(tokened_X)):
-    if len(tokened_X[i]) > 20:
+    if len(tokened_X[i]) > 20:      # 모델이 입력을 20개만 줌
         tokened_X[i] = tokened_X[i][:20]    # 형태소가 20자 보다 많다면 버려라
-X_pad = pad_sequences(tokened_X, 20)
+X_pad = pad_sequences(tokened_X, 20)        # 모델링 할때 데이터 정보가 없으면 0으로 나타냄
 
 model = load_model('./models/news_category_classfication_model_0.994.h5')
 preds = model.predict(X_pad)
@@ -51,7 +53,14 @@ for pred in preds:
     category_preds.append(category_pred)
 df['predict'] = category_preds
 
+# print(df.head(30))
+
+df['OX'] = False
+for i in range(len(df)):
+    if df.loc[i, 'category'] == df.loc[i, 'predict']:
+        df.loc[i, 'OX'] = True
+
 print(df.head(30))
-
-
-
+print(df['OX'].value_counts())
+print(df['OX'].mean())
+print(df.loc[df['OX']==False])
