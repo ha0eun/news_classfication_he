@@ -13,7 +13,7 @@ category =['Politics', 'Economic', 'Social', 'Culture', 'World', 'IT']
 # url = 'https://news.naver.com/main/main.naver?mode=LSD&mid=shm&sid1=102' # 사회
 
 
-headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36'}
+headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36'}  # 크롬정보
 df_titles = pd.DataFrame()
 for i in range(6):
     url = 'https://news.naver.com/main/main.naver?mode=LSD&mid=shm&sid1=10{}'.format(i)

@@ -12,7 +12,7 @@ pd.set_option('display.unicode.east_asian_width', True)
 pd.set_option('display.max_columns', 15)
 df = pd.read_csv('./crawling_data/naver_news_titles_20221124.csv')
 df.category.replace('social', 'Social', inplace=True)
-print(df.head())
+print(df.head(10))
 print(df.category.value_counts())
 df.info()
 

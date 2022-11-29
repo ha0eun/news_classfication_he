@@ -40,11 +40,11 @@ for i in range(0, 6):     # Section / 사회문화 (2, 4)
                 except:
                     print('error', i, j, k, l)
 
-        if j % 10 == 0:  # 10 페이지마다 저장됨
-            df_section_title = pd.DataFrame(titles, columns=['titles'])
-            df_section_title['category'] = category[i]
-            df_title = pd.concat([df_title, df_section_title], ignore_index=True)
-            df_title.to_csv('./crawling_data/crawling_data_{}_{}.csv'.format(category[i], j),
-                            index = False)  # ex) crawling_data_{카테고리 정치}_{페이지 10마다 저장}
-            titles = []
+            if j % 10 == 0:  # 10 페이지마다 저장됨
+                df_section_title = pd.DataFrame(titles, columns=['titles'])
+                df_section_title['category'] = category[i]
+                df_title = pd.concat([df_title, df_section_title], ignore_index=True)
+                df_title.to_csv('./crawling_data/crawling_data_{}_{}.csv'.format(category[i], j),
+                                index = False)  # ex) crawling_data_{카테고리 정치}_{페이지 10마다 저장}
+                titles = []
 

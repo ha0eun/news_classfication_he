@@ -9,6 +9,8 @@ df = pd.DataFrame()
 for path in data_path:
     df_temp = pd.read_csv(path)
     df = pd.concat([df, df_temp], ignore_index=True)
+df.drop_dulicates(inplace=True)
+df.reset_index(inplace=True)
 print(df.head(30))
 df.dropna(inplace=True)
 df.reset_index(inplace=True, drop=True)
