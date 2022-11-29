@@ -36,7 +36,3 @@ plt.legend()
 plt.show()
 
 
-
-
-
-

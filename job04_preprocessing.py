@@ -69,5 +69,3 @@ print(X_train.shape, Y_train.shape, X_test.shape, Y_test.shape)
 
 xy = X_train, X_test, Y_train, Y_test
 np.save('./models/news_data_max_{}_wordsize_{}.npy'.format(max_len, wordsize), xy)      # xy에 저장
-
-
